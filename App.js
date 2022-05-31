@@ -1,14 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
-import { Homescreen } from './src/features/Homescreen';
-import { Exercises } from './src/features/Exercises';
+import { Homescreen } from './src/screens/Homescreen';
+import { Exercises } from './src/screens/Exercises';
 import { ExerciseEdit } from './src/features/ExerciseEdit';
-import { Log } from './src/features/Log';
-import { Routines } from './src/features/Routines';
+import { Log } from './src/screens/Log';
+import { Routines } from './src/screens/Routines';
 import { RoutineEdit } from './src/features/RoutineEdit';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RoutineItems } from './src/components/RoutineItems';
+import { ExerciseItems } from './src/components/ExerciseItem';
 
 
 export default function App() {

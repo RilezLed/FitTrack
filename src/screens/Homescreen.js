@@ -5,6 +5,7 @@ const image = require("./../../assets/fitness.jpg");
 
 export const Homescreen = ({ navigation }) => {
     //const { onPress, title = 'Save' } = props;
+    const testList = ["li", "d"];
     return (
         <View style={styles.container}>
             <ImageBackground source={image} resizeMode='cover' style={styles.image}>
@@ -15,7 +16,7 @@ export const Homescreen = ({ navigation }) => {
                     <Pressable style={styles.button} onPress={() => navigation.navigate('Exercises')}>
                         <Text style={styles.text}>My Exercises</Text>
                     </Pressable>
-                    <Pressable style={styles.button} onPress={() => navigation.navigate('Log')}>
+                    <Pressable style={styles.button} onPress={() => navigation.navigate('Log', { list: testList })}>
                         <Text style={styles.text}>My Log</Text>
                     </Pressable>
                 </View>

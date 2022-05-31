@@ -5,7 +5,7 @@ const image = require("./../../assets/fitness.jpg");
 
 export const Homescreen = ({ navigation }) => {
     //const { onPress, title = 'Save' } = props;
-    const testList = ["li", "d"];
+    const testList = ["li", "s"];
     return (
         <View style={styles.container}>
             <ImageBackground source={image} resizeMode='cover' style={styles.image}>

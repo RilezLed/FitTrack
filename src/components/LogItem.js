@@ -1,11 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export const LogItem = (props) => {
+export const LogItem = ({ logOfRoutines = {} }) => {
+
+    const {
+        routineName = "Arm Day", wasCompleted = true, routineInfo = "3x5 curl \n 4X10 pushup \n 3x8 bench press"
+    } = logOfRoutines;
+
     return (
         <View style={styles.item}>
             <View style={styles.itemleft}>
-                <Text style={styles.text}>{props.text}</Text>
+                <Text style={styles.text}>{routineName}</Text>
 
             </View>
             <View style={styles.item}></View>

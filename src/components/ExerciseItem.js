@@ -1,7 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-export const RoutineItems = () => {
+export const ExerciseItem = () => {
+    const muscleGroup = (null);
+    const exerciseName = (null);
+
     return (
         <View style={styles.item}>
             <View style={styles.itemleft}>
@@ -9,10 +13,8 @@ export const RoutineItems = () => {
             </View>
             <View style={styles.item}></View>
         </View>
-
     )
-
-}
+};
 
 const styles = StyleSheet.create({
     item: {
@@ -41,5 +43,3 @@ const styles = StyleSheet.create({
     },
 
 });
-
-

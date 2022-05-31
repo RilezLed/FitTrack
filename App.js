@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { Homescreen } from './src/features/Homescreen';
 import { Exercises } from './src/features/Exercises';
-import { Exercise } from './src/features/Exercise';
+import { ExerciseEdit } from './src/features/ExerciseEdit';
 import { Log } from './src/features/Log';
 import { Routines } from './src/features/Routines';
 import { RoutineEdit } from './src/features/RoutineEdit';
@@ -37,6 +37,16 @@ export default function App() {
         <Stack.Group screenOptions={{ presentation: 'modal' }}>
           <Stack.Screen name="Edit Routine" component={RoutineEdit} />
         </Stack.Group>
+        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+          <Stack.Screen name="New Routine" component={RoutineEdit} />
+        </Stack.Group>
+        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+          <Stack.Screen name="Edit Exercises" component={ExerciseEdit} />
+        </Stack.Group>
+        <Stack.Group screenOptions={{ presentation: 'modal' }}>
+          <Stack.Screen name="New Exercise" component={ExerciseEdit} />
+        </Stack.Group>
+
       </Stack.Navigator>
     </NavigationContainer >
   );

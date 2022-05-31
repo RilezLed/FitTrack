@@ -1,14 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
 
 export const Log = (props) => {
     const { onPress, title = 'Save' } = props;
     return (
         <View style={styles.container}>
+            <Text style={styles.text}>This is a log of all your progress!</Text>
+            <ScrollView>
+                <Text style={{ fontSize: 200 }}>Yo</Text>
+
+            </ScrollView>
             <View style={styles.containerSub}>
-                <Pressable style={styles.button} onPress={onPress}>
-                    <Text style={styles.text}>Log</Text>
-                </Pressable>
+                <Button title="Clear Log" />
+
             </View>
         </View>
     )
@@ -19,6 +23,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 50,
         flexDirection: 'column',
+        backgroundColor: 'skyblue'
     },
     containerSub: {
         flex: 1,
@@ -41,5 +46,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         letterSpacing: 0.25,
         color: 'white',
+        alignSelf: 'center',
     },
 })

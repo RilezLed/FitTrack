@@ -1,14 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
 
-export const Exercise = (props) => {
+export const ExerciseEdit = (props) => {
     const { onPress, title = 'Save' } = props;
     return (
         <View style={styles.container}>
             <View style={styles.containerSub}>
-                <Pressable style={styles.button} onPress={onPress}>
-                    <Text style={styles.text}>Exercises</Text>
-                </Pressable>
+
+                <Text style={styles.text}>EDIT ME!</Text>
+
             </View>
         </View>
     )

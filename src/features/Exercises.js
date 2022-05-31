@@ -1,15 +1,56 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { ExerciseItem } from '../components/ExerciseItem';
 
 export const Exercises = (props) => {
     const { onPress, title = 'Save' } = props;
+    const navigation = useNavigation();
     return (
-        <View style={styles.container}>
-            <View style={styles.containerSub}>
-                <Pressable style={styles.button} onPress={onPress}>
-                    <Text style={styles.text}>Exercises</Text>
-                </Pressable>
+        <View style={{
+            flex: 1,
+        }}>
+            <ScrollView style={{
+                flex: 1,
+                //alignSelf: 'center',
+                //alignItems: 'center',
+                alignContent: 'center',
+                backgroundColor: 'white',
+            }}>
+
+
+                <ExerciseItem />
+
+            </ScrollView>
+
+            <View style={{
+                flex: 1,
+                height: 100,
+                justifyContent: 'space-evenly',
+                alignSelf: 'center',
+                flexDirection: 'row',
+                alignContent: 'center',
+                alignItems: 'center',
+            }}>
+                <View style={{
+                    flex: 1,
+                    width: 100,
+                    height: 100,
+                    alignItems: 'center',
+                }}>
+                    <Button onPress={() => navigation.navigate("Edit Exercises")} title="Select" /></View>
+                <View style={{
+                    flex: 1,
+                    width: 100,
+                    height: 100,
+                    alignItems: 'center',
+                }}>
+                    <Button onPress={() => navigation.navigate("New Exercise")} title="New" />
+
+                </View>
+
             </View>
+
         </View>
     )
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RoutineItems } from '../components/RoutineItems';
+import { ScrollView } from 'react-native';
 
 
 export const Routines = (props) => {
@@ -11,19 +12,17 @@ export const Routines = (props) => {
         <View style={{
             flex: 1,
         }}>
-            <View style={{
+            <ScrollView style={{
                 flex: 1,
                 //alignSelf: 'center',
-                alignItems: 'center',
+                //alignItems: 'center',
                 alignContent: 'center',
                 backgroundColor: 'white',
             }}>
-                <Text>List of Routines</Text>
-                <RoutineItems />
                 <RoutineItems />
 
 
-            </View>
+            </ScrollView>
 
             <View style={{
                 flex: 1,
@@ -33,6 +32,7 @@ export const Routines = (props) => {
                 flexDirection: 'row',
                 alignContent: 'center',
                 alignItems: 'center',
+                backgroundColor: 'skyblue',
             }}>
                 <View style={{
                     flex: 1,
@@ -40,15 +40,14 @@ export const Routines = (props) => {
                     height: 100,
                     alignItems: 'center',
                 }}>
-                    <Button onPress={() => navigation.navigate("Exercises")} title="Select" /></View>
+                    <Button onPress={() => navigation.navigate("Edit Routine")} title="Select" /></View>
                 <View style={{
                     flex: 1,
                     width: 100,
                     height: 100,
                     alignItems: 'center',
                 }}>
-                    <Button onPress={() => navigation.navigate("Edit Routine")} title="New" />
-
+                    <Button onPress={() => navigation.navigate("New Routine")} title="New" />
                 </View>
 
             </View>

@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { RoutineItems } from '../components/RoutineItems';
+
 
 export const Routines = (props) => {
+    const navigation = useNavigation();
     const { onPress, title = 'Save' } = props;
     return (
         <View style={{
@@ -9,13 +13,16 @@ export const Routines = (props) => {
         }}>
             <View style={{
                 flex: 1,
-                alignSelf: 'center',
-                flexGrow: '.8',
-                flexShrink: 1,
+                //alignSelf: 'center',
                 alignItems: 'center',
                 alignContent: 'center',
+                backgroundColor: 'white',
             }}>
                 <Text>List of Routines</Text>
+                <RoutineItems />
+                <RoutineItems />
+
+
             </View>
 
             <View style={{
@@ -33,18 +40,19 @@ export const Routines = (props) => {
                     height: 100,
                     alignItems: 'center',
                 }}>
-                    <Text> Select</Text></View>
+                    <Button onPress={() => navigation.navigate("Exercises")} title="Select" /></View>
                 <View style={{
                     flex: 1,
                     width: 100,
                     height: 100,
                     alignItems: 'center',
                 }}>
-                    <Text>const name = new type(arguments);</Text>
+                    <Button onPress={() => navigation.navigate("Edit Routine")} title="New" />
 
                 </View>
 
             </View>
+
         </View>
     )
 }

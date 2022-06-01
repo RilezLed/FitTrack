@@ -10,13 +10,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RoutineItems } from './src/components/RoutineItems';
 import { ExerciseItems } from './src/components/ExerciseItem';
-import { LogContextProvider } from './src/services/log.context';
+import { LogContext } from './src/services/log.context';
 
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-    <LogContextProvider>
+    <LogContext.Provider value={[]}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerStyle: {
@@ -52,7 +52,7 @@ export default function App() {
 
         </Stack.Navigator>
       </NavigationContainer >
-    </LogContextProvider>
+    </LogContext.Provider>
   );
 }
 

@@ -9,6 +9,7 @@ export const Log = () => {
     //const [logItems, setLogItems] = useState(["Tube"]);
     //const logList = useNavigationParam('logList');
     //console.log({route.params.list});
+    const msg = useContext(LogContext);
 
 
     function clearLog() {
@@ -24,7 +25,7 @@ export const Log = () => {
 
         <View style={styles.container}>
             <Text style={styles.text}>This is a log of all your progress!</Text>
-            {/* <Text> updateLog({route.params.list})</Text> */}
+            <Text>{msg}</Text>
             <ScrollView>
                 <LogItem>{logContext.logOfRoutines}</LogItem>
                 {/*  {logItems.length < 1 ? (<View><Text style={styles.text2}>Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>

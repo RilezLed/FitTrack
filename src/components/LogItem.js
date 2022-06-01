@@ -1,8 +1,11 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
+
+
 
 export const LogItem = ({ logOfRoutines = {} }) => {
-
+    const [display, setDisplay] = useState(false);
+    const onPress = () => setDisplay(display => true)
     const {
         routineName = "Arm Day", wasCompleted = true, routineInfo = "3x5 curl \n 4X10 pushup \n 3x8 bench press"
     } = logOfRoutines;
@@ -13,6 +16,7 @@ export const LogItem = ({ logOfRoutines = {} }) => {
                 <Text style={styles.text}>{routineName}</Text>
 
             </View>
+
             <View style={styles.item}></View>
         </View>
 

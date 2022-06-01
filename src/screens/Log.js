@@ -6,7 +6,7 @@ import { LogContext } from '../services/log.context';
 
 export const Log = () => {
     //const { onPress, title = 'Save' } = props;
-    //const [logItems, setLogItems] = useState(["Tube"]);
+    const [logItems, setLogItems] = useState([]);
     //const logList = useNavigationParam('logList');
     //console.log({route.params.list});
     const msg = useContext(LogContext);
@@ -15,34 +15,38 @@ export const Log = () => {
     function clearLog() {
         setLogItems([]);
         console.log("done with clear");
+        console.log(logItems.length);
     }
     function updateLog(newStuff) {
-        setLogItems([newStuff]);
+        console.log(logItems);
+        setLogItems([...logItems, newStuff]);
         console.log("Updated");
+        console.log(newStuff);
+        console.log(logItems.length);
     }
     const logContext = useContext(LogContext);
     return (
 
         <View style={styles.container}>
             <Text style={styles.text}>This is a log of all your progress!</Text>
-            <Text>{msg}</Text>
+            {/* <Text>{msg}</Text> */}
             <ScrollView>
-                <LogItem>{logContext.logOfRoutines}</LogItem>
-                {/*  {logItems.length < 1 ? (<View><Text style={styles.text2}>Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
+                {/* <LogItem></LogItem> */}
+                {logItems.length < 1 ? (<View><Text style={styles.text2}>Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
 
                     {
                         logItems.map((item, index) => {
-                            return <LogItem text={item} />
+                            return <LogItem routineName={item} />
                         })
                     }
                 </View>)
-                } */}
+                }
 
 
             </ScrollView>
             <View style={styles.containerSub}>
-                {/* <Button title="Clear Log" onPress={() => clearLog()} /> */}
-
+                <Button title="Clear Log" onPress={() => clearLog()} />
+                <Button title="Update Log" onPress={() => updateLog({ msg })} />
             </View>
         </View>
     )

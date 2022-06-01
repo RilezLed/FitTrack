@@ -16,7 +16,7 @@ import { LogContext } from './src/services/log.context';
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-    <LogContext.Provider value={[]}>
+    <LogContext.Provider value={["Hi", "Hello"]}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerStyle: {

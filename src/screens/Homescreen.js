@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable, ImageBackground } from 'react-native';
+import { useReducer } from 'react/cjs/react.production.min';
+import { LogContext } from '../services/log.context';
 
 const image = require("./../../assets/fitness.jpg");
 
 export const Homescreen = ({ navigation }) => {
     //const { onPress, title = 'Save' } = props;
-    const testList = ["li", "s"];
+    const msg = useContext(LogContext);
     return (
         <View style={styles.container}>
             <ImageBackground source={image} resizeMode='cover' style={styles.image}>
@@ -16,7 +18,7 @@ export const Homescreen = ({ navigation }) => {
                     <Pressable style={styles.button} onPress={() => navigation.navigate('Exercises')}>
                         <Text style={styles.text}>My Exercises</Text>
                     </Pressable>
-                    <Pressable style={styles.button} onPress={() => navigation.navigate('Log', { list: testList })}>
+                    <Pressable style={styles.button} onPress={() => navigation.navigate('Log')}>
                         <Text style={styles.text}>My Log</Text>
                     </Pressable>
                 </View>

@@ -2,13 +2,20 @@ import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
 import { LogItem } from '../components/LogItem';
 import { useNavigation } from '@react-navigation/native';
-import { LogContext } from '../services/log.context';
+//import { LogContext } from '../services/log.context';
 
 export const Log = () => {
     //const { onPress, title = 'Save' } = props;
-    //const [logItems, setLogItems] = useState(["Tube"]);
+
+    const testArray2 = [
+        { routineName: "Arm Day" },
+        { routineName: "Back Day" },
+        { routineName: "Leg Day" }]
+
+    const [logItems, setLogItems] = useState([]);
     //const logList = useNavigationParam('logList');
     //console.log({route.params.list});
+    //const msg = useContext(LogContext);
 
 
     function clearLog() {
@@ -16,32 +23,36 @@ export const Log = () => {
         console.log("done with clear");
     }
     function updateLog(newStuff) {
-        setLogItems([newStuff]);
+        console.log(logItems);
+        setLogItems([...logItems, newStuff]);
         console.log("Updated");
     }
-    const logContext = useContext(LogContext);
+    // const logContext = useContext(LogContext);
+
+
+
     return (
 
         <View style={styles.container}>
             <Text style={styles.text}>This is a log of all your progress!</Text>
-            {/* <Text> updateLog({route.params.list})</Text> */}
             <ScrollView>
-                <LogItem>{logContext.logOfRoutines}</LogItem>
-                {/*  {logItems.length < 1 ? (<View><Text style={styles.text2}>Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
+                {/* {logItems.map((item, index) => (<LogItem routine={item}></LogItem>))} */}
+                {logItems.length == 0 ? (<View><Text style={styles.text2}>Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
 
                     {
-                        logItems.map((item, index) => {
-                            return <LogItem text={item} />
-                        })
+                        // logItems.map((item, index) => {
+                        //     return <LogItem routine={item} />
+                        // })
+                        logItems.map((item, index) => (<LogItem routine={item}></LogItem>))
                     }
                 </View>)
-                } */}
+                }
 
 
             </ScrollView>
             <View style={styles.containerSub}>
-                {/* <Button title="Clear Log" onPress={() => clearLog()} /> */}
-
+                <Button title="Clear Log" onPress={() => clearLog()} />
+                <Button title="Update Log" onPress={() => updateLog({ routineName: "NEw Routines" })} />
             </View>
         </View>
     )

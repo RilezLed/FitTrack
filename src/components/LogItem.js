@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 
 
-export const LogItem = ({ logOfRoutines = {} }) => {
-    const [display, setDisplay] = useState(false);
-    const onPress = () => setDisplay(display => true)
+export const LogItem = ({ routine }) => {
     const {
-        routineName = "Arm Day", wasCompleted = true, routineInfo = "3x5 curl \n 4X10 pushup \n 3x8 bench press"
-    } = logOfRoutines;
+        routineName = "Arm Day", wasCompleted = true, routineInfo = "3x5 curl \n 4X10 pushup \n 3x8 bench press", routineType = "Heavy"
+    } = routine;
 
     return (
         <View style={styles.item}>
             <View style={styles.itemleft}>
-                <Text style={styles.text}>{routineName}</Text>
-
+                <Text style={styles.text}>{routine.routineName}</Text>
             </View>
-
-            <View style={styles.item}></View>
         </View>
-
     )
 
 }

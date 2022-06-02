@@ -11,12 +11,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RoutineItems } from './src/components/RoutineItems';
 import { ExerciseItems } from './src/components/ExerciseItem';
 import { LogContext } from './src/services/log.context';
+import { LogContextProvider } from './src/services/log.context';
 
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+
   return (
-    <LogContext.Provider value={["Hi", "Hello"]}>
+    <LogContext.Provider value={[{ routineName: "Leg Day" }, { routineName: "Leg Day" }]}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
           headerStyle: {

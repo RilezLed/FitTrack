@@ -4,12 +4,16 @@ import React, { useState, createContext, useEffect, useMemo } from "react";
 //import { LogItem } from '../components/LogItem';
 //import { Children } from "react/cjs/react.production.min";
 
-export const LogContext = createContext("");
+export const LogContext = createContext();
 
-// export const LogContextProvider = ({ children }) => {
-//     return (
-//         <LogContext.Provider value={{ logOfRoutines: [1, 2, 3] }}>
-//             {children}
-//         </LogContext.Provider >
-//     )
-// }
+export const LogContextProvider = ({ children }) => {
+    const [routines, setRoutines] = useState({});
+
+
+
+    return (
+        <LogContext.Provider value={{ routines: [] }} >
+            {children}
+        </LogContext.Provider >
+    )
+}

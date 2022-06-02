@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { TextInput } from 'react-native-paper';
 import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
 
-export const ExerciseEdit = (props) => {
-    const { onPress, title = 'Save' } = props;
+
+
+export const ExerciseEdit = ({ addExercise }) => {
+
+    const [exerciseInfo, setExerciseInfo] = useState();
+
+    const [currName, setCurrName] = useState();
+    const [currGroup, setCurrGroup] = useState();
+    const [currRep, setCurrRep] = useState();
+    const [currSet, setCurrSet] = useState();
+    const [currWeight, setCurrWeight] = useState();
+
     return (
         <View style={styles.container}>
             <View style={styles.containerSub}>
-
-                <Text style={styles.text}>EDIT ME!</Text>
+                <TextInput onChangeText={setCurrName} label="Name:" />
+                <TextInput onChangeText={setCurrGroup} label="Muscle Group:" />
+                <TextInput onChangeText={setCurrRep} label="Reps:" />
+                <TextInput onChangeText={setCurrSet} label="Sets:" />
+                <TextInput onChangeText={setCurrWeight} label="Weight:" />
+                <Button onPress={(exerciseInfo) => { setExerciseInfo() }} title="Save"></Button>
 
             </View>
         </View>

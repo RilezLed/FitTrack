@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ExerciseItem } from '../components/ExerciseItem';
 
-export const Exercises = (props) => {
-    const { onPress, title = 'Save' } = props;
+
+export const Exercises = () => {
+
     const navigation = useNavigation();
+    const [exerciseItems, setExcerciseItems] = useState([]);
+
+    const testList = ([
+        { name: "Bench Press", muscleGroup: "Back" },
+    ]);
+
     return (
         <View style={{
             flex: 1,
@@ -17,9 +24,15 @@ export const Exercises = (props) => {
                 alignContent: 'center',
                 backgroundColor: 'white',
             }}>
+                {exerciseItems.length == 0 ? (<View><Text style={styles.text}>No Exercises Yet! Click New to Add</Text></View>) : (<View>
+
+                    {
+                        testList.map((item, index) => (<ExerciseItem exerciseProps={item}></ExerciseItem>))
+                    }
+                </View>)
+                }
 
 
-                <ExerciseItem />
 
             </ScrollView>
 

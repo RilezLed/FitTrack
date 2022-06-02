@@ -2,40 +2,39 @@ import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
 import { LogItem } from '../components/LogItem';
 import { useNavigation } from '@react-navigation/native';
-//import { LogContext } from '../services/log.context';
+import { LogContext, LogContextProvider } from '../services/log.context';
 
-export const Log = () => {
+export const Log = ({ clear }, { update }) => {
     //const { onPress, title = 'Save' } = props;
-
+    const logContext = useContext(LogContext);
+    console.log(logContext);
     const testArray2 = [
         { routineName: "Arm Day" },
         { routineName: "Back Day" },
         { routineName: "Leg Day" }]
-
-    const [logItems, setLogItems] = useState([]);
+    const singUP = { routineName: "Arm Day" };
+    const [logItems, setLogItems] = useState(logContext);
     //const logList = useNavigationParam('logList');
     //console.log({route.params.list});
     //const msg = useContext(LogContext);
+    // const logContext = useContext(LogContext);
 
-
-    function clearLog() {
+    const clearLog = () => {
         setLogItems([]);
         console.log("done with clear");
+
     }
-    function updateLog(newStuff) {
+    const updateLog = (newStuff) => {
         console.log(logItems);
         setLogItems([...logItems, newStuff]);
         console.log("Updated");
     }
-    // const logContext = useContext(LogContext);
-
-
 
     return (
 
         <View style={styles.container}>
             <Text style={styles.text}>This is a log of all your progress!</Text>
-            <ScrollView>
+            <ScrollView style={styles.containerSub}>
                 {/* {logItems.map((item, index) => (<LogItem routine={item}></LogItem>))} */}
                 {logItems.length == 0 ? (<View><Text style={styles.text2}>Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
 
@@ -51,8 +50,8 @@ export const Log = () => {
 
             </ScrollView>
             <View style={styles.containerSub}>
-                <Button title="Clear Log" onPress={() => clearLog()} />
-                <Button title="Update Log" onPress={() => updateLog({ routineName: "NEw Routines" })} />
+                <Button title="Clear Log" onPress={() => { clearLog() }} />
+                <Button title="Update Log" onPress={() => { updateLog(singUP) }} />
             </View>
         </View>
     )
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue'
     },
     containerSub: {
-        flex: 1,
+        flex: .6,
         padding: 50,
         flexDirection: 'column',
     },

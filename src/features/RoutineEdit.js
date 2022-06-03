@@ -19,10 +19,10 @@ export const RoutineEdit = ({ addRoutine }) => {
             <View style={styles.containerSub}>
                 <TextInput onChangeText={setRoutineName} label="Name:" />
                 {!listRoutines.state.routines ? (
-                    <Button title="Update Log" onPress={
+                    <Button title="Update Routines List" onPress={
                         () => setListRoutines({ routines: [{ routineName: routineName, exercises: ["Arm Day"] }] })} />) : (
 
-                    <Button title="Update Log" onPress={
+                    <Button title="Update Routines List" onPress={
                         () => setListRoutines({ routines: [...listRoutines.state.routines, { routineName: routineName, exercises: ["Arm Day"] }] })} />)
                 }
             </View>

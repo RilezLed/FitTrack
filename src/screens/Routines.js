@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, Pressable, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RoutineItems } from '../components/RoutineItems';
 import { ScrollView } from 'react-native';

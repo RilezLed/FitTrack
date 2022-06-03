@@ -1,15 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView, SafeAreaView } from 'react-native';
 import { LogItem } from '../components/LogItem';
 import { useNavigation } from '@react-navigation/native';
 import { LogContext } from '../services/log.context';
+import { RoutineContext } from '../services/routine.context';
 
 export const Log = () => {
     //const { onPress, title = 'Save' } = props;
     //console.log(LogContext);
     const [listRoutines, setListRoutines] = useContext(LogContext)
-    console.log("This is the state")
-    console.log(listRoutines)
+    const [possibleRoutines, setPossibleRoutines] = useContext(RoutineContext)
+
+
     //setListRoutines({ routines: [] })
     //console.log("This is the LogContext")
     //rconsole.log(LogContext)
@@ -35,7 +37,8 @@ export const Log = () => {
     //     setLogItems([...logItems, newStuff]);
     //     console.log("Updated");
     // }
-
+    console.log("this is the list routines")
+    console.log(listRoutines)
     return (
         <View style={styles.container}>
             <Text style={styles.text}>This is a log of all your progress!</Text>
@@ -59,15 +62,15 @@ export const Log = () => {
             </ScrollView>
             <View style={styles.containerSub}>
                 <Button title="Clear Log" onPress={() => setListRoutines({ routines: [] })} />
-                {!listRoutines.state.routines ? (
+                {/* {!listRoutines.state.routines ? (
                     <Button title="Update Log" onPress={
                         () => {
-                            setListRoutines({ routines: [{ routineName: "Arm Day" }] });
+                            setListRoutines({ routines: possibleRoutines.state.routines });
                         }} />) : (
 
                     <Button title="Update Log" onPress={
-                        () => setListRoutines({ routines: [...listRoutines.state.routines, { routineName: "Arm Day" }] })} />)
-                }
+                        () => setListRoutines({ routines: possibleRoutines.state.routines })} />)
+                } */}
             </View>
         </View>
 

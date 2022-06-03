@@ -32,10 +32,10 @@ export const ExerciseEdit = ({ addExercise }) => {
                 <TextInput onChangeText={setCurrWeight} label="Weight:" />
                 {!listExercises.state.exercises ? (
                     <Button title="Update Log" onPress={
-                        () => setListExercises({ exercises: [{ muscleGroup: currGroup, name: currName, reps: currRep }] })} />) : (
+                        () => setListExercises({ exercises: [{ muscleGroup: currGroup, name: currName, reps: currRep, set: currSet, weight: currWeight }] })} />) : (
 
                     <Button title="Update Log" onPress={
-                        () => setListExercises({ exercises: [...listExercises.state.exercises, { muscleGroup: currGroup, name: currName, reps: currRep }] })} />)
+                        () => setListExercises({ exercises: [...listExercises.state.exercises, { muscleGroup: currGroup, name: currName, reps: currRep, set: currSet, weight: currWeight }] })} />)
                 }
             </View>
         </View>

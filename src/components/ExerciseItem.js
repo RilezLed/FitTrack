@@ -2,22 +2,22 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export const ExerciseItem = ({ exerciseProps = {} }) => {
+export const ExerciseItem = ({ exercises }) => {
     const {
         muscleGroup = "Arms",
         name = "Standard Bicep Curl",
         reps = "15",
         sets = "3",
         weight = "50",
-    } = exerciseProps
+    } = exercises
 
     return (
         <View style={styles.item}>
             <View style={styles.itemleft}>
-                <Text style={styles.text}>Name of Exercise: {exerciseProps.name} </Text>
-                <Text style={styles.text}>Muscle Group: {exerciseProps.muscleGroup} </Text>
-                <Text style={styles.text}>Sets X Reps: {exerciseProps.sets} x  {exerciseProps.reps}</Text>
-                <Text style={styles.text}>Weight: {exerciseProps.weight} </Text>
+                <Text style={styles.text}>Name of Exercise: {exercises.name} </Text>
+                <Text style={styles.text}>Muscle Group: {exercises.muscleGroup} </Text>
+                <Text style={styles.text}>Sets X Reps: {exercises.sets} x  {exercises.reps}</Text>
+                <Text style={styles.text}>Weight: {exercises.weight} </Text>
             </View>
             <View style={styles.item}></View>
         </View>

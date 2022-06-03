@@ -1,18 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { TextInput } from 'react-native-paper';
 import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
-
+import { ExerciseContext } from '../services/exercise.context';
 
 
 export const ExerciseEdit = ({ addExercise }) => {
+    //const [exerciseInfo, setExerciseInfo] = useState();
+    const [listExercises, setListExercises] = useContext(ExerciseContext)
+    console.log("This is the state")
+    console.log(listExercises)
+    //console.log("Exercise Info")
+    //console.log(exerciseInfo)
 
-    const [exerciseInfo, setExerciseInfo] = useState();
+
 
     const [currName, setCurrName] = useState();
     const [currGroup, setCurrGroup] = useState();
     const [currRep, setCurrRep] = useState();
     const [currSet, setCurrSet] = useState();
     const [currWeight, setCurrWeight] = useState();
+
+
 
     return (
         <View style={styles.container}>
@@ -22,8 +30,13 @@ export const ExerciseEdit = ({ addExercise }) => {
                 <TextInput onChangeText={setCurrRep} label="Reps:" />
                 <TextInput onChangeText={setCurrSet} label="Sets:" />
                 <TextInput onChangeText={setCurrWeight} label="Weight:" />
-                <Button onPress={(exerciseInfo) => { setExerciseInfo() }} title="Save"></Button>
+                {!listExercises.state.exercises ? (
+                    <Button title="Update Log" onPress={
+                        () => setListExercises({ exercises: [{ muscleGroup: currGroup, name: currName, reps: currRep }] })} />) : (
 
+                    <Button title="Update Log" onPress={
+                        () => setListExercises({ exercises: [...listExercises.state.exercises, { muscleGroup: currGroup, name: currName, reps: currRep }] })} />)
+                }
             </View>
         </View>
     )

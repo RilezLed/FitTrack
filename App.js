@@ -10,51 +10,60 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RoutineItems } from './src/components/RoutineItems';
 import { ExerciseItems } from './src/components/ExerciseItem';
-import { LogContext } from './src/services/log.context';
-import { LogContextProvider } from './src/services/log.context';
+import { LogContext, LogProvider } from './src/services/log.context';
+import { useState } from 'react/cjs/react.production.min';
+import { ExerciseContext, ExerciseProvider } from './src/services/exercise.context';
+//import { LogContextProvider } from './src/services/log.context';
 
 
 export default function App() {
   const Stack = createNativeStackNavigator();
+  //const [routines, setRoutines] = useState([]);
+  //const clearLog = () => setRoutines([]);
+  // updateLog = (addRoutine) => setRoutines([...routines, addRoutine]);
+
+  //const addRoutine = { routineName: "Arm Heavy Day" };
 
   return (
-    <LogContext.Provider value={[{ routineName: "Leg Day" }, { routineName: "Leg Day" }]}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{
-          headerStyle: {
-            backgroundColor: 'deepskyblue',
-          },
-          headerTintColor: 'floralwhite',
-          headerTitleStyle: {
-            fontWeight: 'bold',
-          }
-        }}>
-          <Stack.Screen style={styles.title} r
-            name="Home"
-            component={Homescreen}
-            options={{
-              title: 'Time to hit the Gym Again',
-            }}
-          />
-          <Stack.Screen name="Exercises" component={Exercises} />
-          <Stack.Screen name="Routines" component={Routines} />
-          <Stack.Screen name="Log" component={Log} />
-          <Stack.Group screenOptions={{ presentation: 'modal' }}>
-            <Stack.Screen name="Edit Routine" component={RoutineEdit} />
-          </Stack.Group>
-          <Stack.Group screenOptions={{ presentation: 'modal' }}>
-            <Stack.Screen name="New Routine" component={RoutineEdit} />
-          </Stack.Group>
-          <Stack.Group screenOptions={{ presentation: 'modal' }}>
-            <Stack.Screen name="Edit Exercises" component={ExerciseEdit} />
-          </Stack.Group>
-          <Stack.Group screenOptions={{ presentation: 'modal' }}>
-            <Stack.Screen name="New Exercise" component={ExerciseEdit} />
-          </Stack.Group>
+    <ExerciseProvider>
+      <LogProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{
+            headerStyle: {
+              backgroundColor: 'deepskyblue',
+            },
+            headerTintColor: 'floralwhite',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            }
+          }}>
+            <Stack.Screen style={styles.title} r
+              name="Home"
+              component={Homescreen}
+              options={{
+                title: 'Time to hit the Gym Again',
+              }}
+            />
+            <Stack.Screen name="Exercises" component={Exercises} />
+            <Stack.Screen name="Routines" component={Routines} />
+            <Stack.Screen name="Log" component={Log} />
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+              <Stack.Screen name="Edit Routine" component={RoutineEdit} />
+            </Stack.Group>
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+              <Stack.Screen name="New Routine" component={RoutineEdit} />
+            </Stack.Group>
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+              <Stack.Screen name="Edit Exercises" component={ExerciseEdit} />
+            </Stack.Group>
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+              <Stack.Screen name="New Exercise" component={ExerciseEdit} />
+            </Stack.Group>
 
-        </Stack.Navigator>
-      </NavigationContainer >
-    </LogContext.Provider>
+          </Stack.Navigator>
+        </NavigationContainer >
+      </LogProvider>
+    </ExerciseProvider>
   );
 }
 

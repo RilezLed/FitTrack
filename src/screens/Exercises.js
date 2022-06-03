@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ExerciseItem } from '../components/ExerciseItem';
+import { ExerciseContext } from '../services/exercise.context';
 
 
 export const Exercises = () => {
-
+    const [listExercises, setListExercises] = useContext(ExerciseContext);
     const navigation = useNavigation();
-    const [exerciseItems, setExcerciseItems] = useState([]);
-
-    const testList = ([
-        { name: "Bench Press", muscleGroup: "Back" },
-    ]);
+    console.log(listExercises);
+    // const testList = ([
+    //     { name: "Bench Press", muscleGroup: "Back" },
+    // ]);
 
     return (
         <View style={{
@@ -24,12 +24,17 @@ export const Exercises = () => {
                 alignContent: 'center',
                 backgroundColor: 'white',
             }}>
-                {exerciseItems.length == 0 ? (<View><Text style={styles.text}>No Exercises Yet! Click New to Add</Text></View>) : (<View>
+                {!listExercises.state.exercises || listExercises.state.exercises.length < 1 ? (
 
-                    {
-                        testList.map((item, index) => (<ExerciseItem exerciseProps={item}></ExerciseItem>))
-                    }
-                </View>)
+                    <View><Text style={styles.text2}> Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
+
+                        {
+                            // logItems.map((item, index) => {
+                            //     return <LogItem routine={item} />
+                            // })
+                            listExercises.state.exercises.map((item, index) => (<ExerciseItem exercises={item}></ExerciseItem>))
+                        }
+                    </View>)
                 }
 
 

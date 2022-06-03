@@ -56,7 +56,7 @@ export const Exercises = () => {
                     height: 100,
                     alignItems: 'center',
                 }}>
-                    <Button onPress={() => navigation.navigate("Edit Exercises")} title="Select" /></View>
+                    <Button onPress={() => navigation.navigate("Edit Exercises")} title="Edit" /></View>
                 <View style={{
                     flex: 1,
                     width: 100,
@@ -64,7 +64,7 @@ export const Exercises = () => {
                     alignItems: 'center',
                 }}>
                     <Button onPress={() => navigation.navigate("New Exercise")} title="New" />
-
+                    <Button title="Clear Log" onPress={() => setListExercises({ exercises: [] })} />
                 </View>
 
             </View>

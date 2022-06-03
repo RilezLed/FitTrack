@@ -1,11 +1,17 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { RoutineContext } from '../services/routine.context';
 
-export const RoutineItems = () => {
+export const RoutineItems = ({ listExercises }) => {
+    const {
+        routineName = "Default Routine",
+        exercises = [{}],
+    } = listExercises
+
     return (
         <View style={styles.item}>
             <View style={styles.itemleft}>
-                <Text style={styles.text}>This is something </Text>
+                <Text style={styles.text}>{listExercises.routineName} </Text>
             </View>
             <View style={styles.item}></View>
         </View>

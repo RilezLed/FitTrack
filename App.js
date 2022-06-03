@@ -13,6 +13,8 @@ import { ExerciseItems } from './src/components/ExerciseItem';
 import { LogContext, LogProvider } from './src/services/log.context';
 import { useState } from 'react/cjs/react.production.min';
 import { ExerciseContext, ExerciseProvider } from './src/services/exercise.context';
+import { RoutineContext, RoutineProvider } from './src/services/routine.context';
+
 //import { LogContextProvider } from './src/services/log.context';
 
 
@@ -26,43 +28,45 @@ export default function App() {
 
   return (
     <ExerciseProvider>
-      <LogProvider>
-        <NavigationContainer>
-          <Stack.Navigator screenOptions={{
-            headerStyle: {
-              backgroundColor: 'deepskyblue',
-            },
-            headerTintColor: 'floralwhite',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            }
-          }}>
-            <Stack.Screen style={styles.title} r
-              name="Home"
-              component={Homescreen}
-              options={{
-                title: 'Time to hit the Gym Again',
-              }}
-            />
-            <Stack.Screen name="Exercises" component={Exercises} />
-            <Stack.Screen name="Routines" component={Routines} />
-            <Stack.Screen name="Log" component={Log} />
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
-              <Stack.Screen name="Edit Routine" component={RoutineEdit} />
-            </Stack.Group>
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
-              <Stack.Screen name="New Routine" component={RoutineEdit} />
-            </Stack.Group>
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
-              <Stack.Screen name="Edit Exercises" component={ExerciseEdit} />
-            </Stack.Group>
-            <Stack.Group screenOptions={{ presentation: 'modal' }}>
-              <Stack.Screen name="New Exercise" component={ExerciseEdit} />
-            </Stack.Group>
+      <RoutineProvider>
+        <LogProvider>
+          <NavigationContainer>
+            <Stack.Navigator screenOptions={{
+              headerStyle: {
+                backgroundColor: 'deepskyblue',
+              },
+              headerTintColor: 'floralwhite',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              }
+            }}>
+              <Stack.Screen style={styles.title} r
+                name="Home"
+                component={Homescreen}
+                options={{
+                  title: 'Time to hit the Gym Again',
+                }}
+              />
+              <Stack.Screen name="Exercises" component={Exercises} />
+              <Stack.Screen name="Routines" component={Routines} />
+              <Stack.Screen name="Log" component={Log} />
+              <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                <Stack.Screen name="Edit Routine" component={RoutineEdit} />
+              </Stack.Group>
+              <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                <Stack.Screen name="New Routine" component={RoutineEdit} />
+              </Stack.Group>
+              <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                <Stack.Screen name="Edit Exercises" component={ExerciseEdit} />
+              </Stack.Group>
+              <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                <Stack.Screen name="New Exercise" component={ExerciseEdit} />
+              </Stack.Group>
 
-          </Stack.Navigator>
-        </NavigationContainer >
-      </LogProvider>
+            </Stack.Navigator>
+          </NavigationContainer >
+        </LogProvider>
+      </RoutineProvider>
     </ExerciseProvider>
   );
 }

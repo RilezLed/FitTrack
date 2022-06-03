@@ -1,13 +1,16 @@
-import React from 'react';
-import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
+import React, { useContext } from 'react';
+import { View, Text, StyleSheet, Button, Alert, Pressable, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RoutineItems } from '../components/RoutineItems';
 import { ScrollView } from 'react-native';
+import { RoutineContext } from '../services/routine.context';
 
 
-export const Routines = (props) => {
+export const Routines = () => {
     const navigation = useNavigation();
-    const { onPress, title = 'Save' } = props;
+    const [listRoutines, setListRoutines] = useContext(RoutineContext)
+    console.log("This is the state")
+    console.log(listRoutines)
     return (
         <View style={{
             flex: 1,
@@ -19,8 +22,21 @@ export const Routines = (props) => {
                 alignContent: 'center',
                 backgroundColor: 'white',
             }}>
-                <RoutineItems />
+                {/* <RoutineItems /> */}
 
+                {/* {logItems.map((item, index) => (<LogItem routine={item}></LogItem>))} */}
+                {!listRoutines.state.routines || listRoutines.state.routines.length < 1 ? (
+
+                    <View><Text style={styles.text2}> No routines yet! Add a Routinex!</Text></View>) : (<View>
+
+                        {
+                            // logItems.map((item, index) => {
+                            //     return <LogItem routine={item} />
+                            // })
+                            listRoutines.state.routines.map((item, index) => (<RoutineItems listExercises={item}></RoutineItems>))
+                        }
+                    </View>)
+                }
 
             </ScrollView>
 
@@ -48,6 +64,7 @@ export const Routines = (props) => {
                     alignItems: 'center',
                 }}>
                     <Button onPress={() => navigation.navigate("New Routine")} title="New" />
+                    <Button title="Clear Routines" onPress={() => setListRoutines({ routines: [] })} />
                 </View>
 
             </View>

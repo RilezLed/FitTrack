@@ -2,14 +2,22 @@ import React from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export const ExerciseItem = () => {
-    const muscleGroup = (null);
-    const exerciseName = (null);
+export const ExerciseItem = ({ exercises }) => {
+    const {
+        muscleGroup = "Arms",
+        name = "Standard Bicep Curl",
+        reps = "15",
+        sets = "3",
+        weight = "50",
+    } = exercises
 
     return (
         <View style={styles.item}>
             <View style={styles.itemleft}>
-                <Text style={styles.text}>This is something </Text>
+                <Text style={styles.text}>Name of Exercise: {exercises.name} </Text>
+                <Text style={styles.text}>Muscle Group: {exercises.muscleGroup} </Text>
+                <Text style={styles.text}>Sets X Reps: {exercises.sets} x  {exercises.reps}</Text>
+                <Text style={styles.text}>Weight: {exercises.weight} </Text>
             </View>
             <View style={styles.item}></View>
         </View>
@@ -22,9 +30,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'deepskyblue',
         padding: 5,
         borderRadius: 10,
-        maxHeight: 40,
-        flexDirection: 'row',
-        alignItems: 'center',
+        // maxHeight: 80,
+        flexDirection: 'column',
+        alignItems: 'left',
         justifyConent: 'space-around',
         margin: 5,
 
@@ -32,7 +40,7 @@ const styles = StyleSheet.create({
     itemLeft: {
         flex: 1,
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'left',
         flexWrap: 'wrap',
     },
     itemText: {},

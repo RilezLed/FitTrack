@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { ExerciseItem } from '../components/ExerciseItem';
+import { ExerciseContext } from '../services/exercise.context';
 
-export const Exercises = (props) => {
-    const { onPress, title = 'Save' } = props;
+
+export const Exercises = () => {
+    const [listExercises, setListExercises] = useContext(ExerciseContext);
     const navigation = useNavigation();
+    console.log(listExercises);
+    // const testList = ([
+    //     { name: "Bench Press", muscleGroup: "Back" },
+    // ]);
+
     return (
         <View style={{
             flex: 1,
@@ -17,9 +24,20 @@ export const Exercises = (props) => {
                 alignContent: 'center',
                 backgroundColor: 'white',
             }}>
+                {!listExercises.state.exercises || listExercises.state.exercises.length < 1 ? (
+
+                    <View><Text style={styles.text2}> Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
+
+                        {
+                            // logItems.map((item, index) => {
+                            //     return <LogItem routine={item} />
+                            // })
+                            listExercises.state.exercises.map((item, index) => (<ExerciseItem exercises={item}></ExerciseItem>))
+                        }
+                    </View>)
+                }
 
 
-                <ExerciseItem />
 
             </ScrollView>
 
@@ -38,7 +56,7 @@ export const Exercises = (props) => {
                     height: 100,
                     alignItems: 'center',
                 }}>
-                    <Button onPress={() => navigation.navigate("Edit Exercises")} title="Select" /></View>
+                    <Button onPress={() => navigation.navigate("Edit Exercises")} title="Edit" /></View>
                 <View style={{
                     flex: 1,
                     width: 100,
@@ -46,7 +64,7 @@ export const Exercises = (props) => {
                     alignItems: 'center',
                 }}>
                     <Button onPress={() => navigation.navigate("New Exercise")} title="New" />
-
+                    <Button title="Clear Log" onPress={() => setListExercises({ exercises: [] })} />
                 </View>
 
             </View>

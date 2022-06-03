@@ -1,49 +1,79 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Button, Alert, Pressable, ScrollView, SafeAreaView } from 'react-native';
 import { LogItem } from '../components/LogItem';
 import { useNavigation } from '@react-navigation/native';
 import { LogContext } from '../services/log.context';
+import { RoutineContext } from '../services/routine.context';
 
 export const Log = () => {
     //const { onPress, title = 'Save' } = props;
-    //const [logItems, setLogItems] = useState(["Tube"]);
+    //console.log(LogContext);
+    const [listRoutines, setListRoutines] = useContext(LogContext)
+    const [possibleRoutines, setPossibleRoutines] = useContext(RoutineContext)
+
+
+    //setListRoutines({ routines: [] })
+    //console.log("This is the LogContext")
+    //rconsole.log(LogContext)
+
+    //const testArray2 = [
+    // { routineName: "Arm Day" },
+    // { routineName: "Back Day" },
+    //{ routineName: "Leg Day" }]
+    // const singUP = { routineName: "Arm Day" };
+    //const [logItems, setLogItems] = useState(logContext);
     //const logList = useNavigationParam('logList');
     //console.log({route.params.list});
+    //const msg = useContext(LogContext);
+    // const logContext = useContext(LogContext);
 
+    // const clearLog = () => {
+    //     setLogItems([]);
+    //     console.log("done with clear");
 
-    function clearLog() {
-        setLogItems([]);
-        console.log("done with clear");
-    }
-    function updateLog(newStuff) {
-        setLogItems([newStuff]);
-        console.log("Updated");
-    }
-    const logContext = useContext(LogContext);
+    // }
+    // const updateLog = (newStuff) => {
+    //     console.log(logItems);
+    //     setLogItems([...logItems, newStuff]);
+    //     console.log("Updated");
+    // }
+    console.log("this is the list routines")
+    console.log(listRoutines)
     return (
-
         <View style={styles.container}>
             <Text style={styles.text}>This is a log of all your progress!</Text>
-            {/* <Text> updateLog({route.params.list})</Text> */}
-            <ScrollView>
-                <LogItem>{logContext.logOfRoutines}</LogItem>
-                {/*  {logItems.length < 1 ? (<View><Text style={styles.text2}>Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
 
-                    {
-                        logItems.map((item, index) => {
-                            return <LogItem text={item} />
-                        })
-                    }
-                </View>)
-                } */}
+            <ScrollView style={styles.containerSub}>
+                {/* {logItems.map((item, index) => (<LogItem routine={item}></LogItem>))} */}
+                {!listRoutines.state.routines || listRoutines.state.routines.length < 1 ? (
+
+                    <View><Text style={styles.text2}> Nothing in your log yet! Get lifting you slacker!</Text></View>) : (<View>
+
+                        {
+                            // logItems.map((item, index) => {
+                            //     return <LogItem routine={item} />
+                            // })
+                            listRoutines.state.routines.map((item, index) => (<LogItem routine={item}></LogItem>))
+                        }
+                    </View>)
+                }
 
 
             </ScrollView>
             <View style={styles.containerSub}>
-                {/* <Button title="Clear Log" onPress={() => clearLog()} /> */}
+                <Button title="Clear Log" onPress={() => setListRoutines({ routines: [] })} />
+                {/* {!listRoutines.state.routines ? (
+                    <Button title="Update Log" onPress={
+                        () => {
+                            setListRoutines({ routines: possibleRoutines.state.routines });
+                        }} />) : (
 
+                    <Button title="Update Log" onPress={
+                        () => setListRoutines({ routines: possibleRoutines.state.routines })} />)
+                } */}
             </View>
         </View>
+
     )
 }
 
@@ -55,7 +85,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue'
     },
     containerSub: {
-        flex: 1,
+        flex: .6,
         padding: 50,
         flexDirection: 'column',
     },
